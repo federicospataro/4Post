@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<div class="container">
+
+<br>
+ 
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item active">Profile</li>
+</ol>
+
+<center>
+{% if messages %}
+  {% for msg in messages %}
+    <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{msg.message}}
+    </div>
+  {% endfor %}
+{% endif %}
+</center>
+
+{% if pre %}
+<br>
+<font size="+2">
+<a href="{{pre}}">&laquo; Indietro</a>
+</font>
+<br>
+{% endif %}
+<br>
+
+
+<div class="card" style="max-width: 40.5em; margin:0 auto;">
+  <div class="card-body">
+    <center><h3>Profile Information</h3></center>
+    <img src="/static/img/imgprofilo.png" alt="" class="float-right" height="100" width="100">
+    <br>
+    <u>Nickname:</u> <a id="nickname"></a>
+    <br>
+    <u>Description:</u> <a id="description"></a>
+    <br>
+    <u>Role:</u> <a id="role"></a>
+    <br><br>
+    <a class="btn btn-success" id="notfollowed" onclick="follow(this.id)"><i class="fa fa-plus"></i> Follow</a>
+    <a class="btn btn-secondary" id="followed" onclick="follow(this.id)"><i class="fa fa-check"></i> Followed</a>
+    
+
+    <!-- aggiungi pulsante follow-->
+
+    <!--
+    <u>email:</u> {{email}}
+    <br>
+    <br>
+    <br>
+    <a href="/modificaprofilo" class="text-right">Modifica Profilo →</a>
+    <br>
+    <a href="/cambiopassword" class="text-right">Cambio Password →</a>
+    -->
+
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--<center><h3>Posts published</h3></center>-->
+<br>
+
+
+</div>
+
+
+
+<script>
+
+  function follow(btn){
+
+    document.getElementById(btn).disabled = true;
+
+    var userid = window.location.pathname.split("/").slice(-1)[0];
+    var id = localStorage.getItem("sessionid");
+
+    if(btn=="followed"){
+      var follow=false;
+    }else{
+      var follow=true;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://'+window.location.host+'/api/follow', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        'sessionid': id,
+        'userid': userid,
+        'follow': follow
+    }));
+
+    xhr.onreadystatechange = function() { 
+
+      if (xhr.readyState == 4 && xhr.status == 200){
+
+        document.getElementById(btn).disabled = false;
+
+        if(follow){
+          document.getElementById("notfollowed").style.display = "none";
+          document.getElementById("followed").style.display = "inline-block";
+        }else{
+          document.getElementById("notfollowed").style.display = "inline-block";
+          document.getElementById("followed").style.display = "none";
+        }
+
+      }
+
+    }
+
+  }
+
+</script>
+
+
+
+
+{% endblock %}

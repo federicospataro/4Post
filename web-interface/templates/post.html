@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Post{% endblock %}
+{% block content %}
+
+<div class="container">
+
+<br>
+ 
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item active">Post</li>
+</ol>
+
+
+  {% if messages %}
+  {% for msg in messages %}
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{msg.message}}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<div id="singlepostarea">
+  <center>
+    <br><br><br>
+    <img src="/static/img/loading.gif" width="50" height="50" alt="">
+    <br><br><br>
+    </center>
+</div>
+
+<hr>
+<form action="javascript:addcomment()" class="input-group-prepend">
+  <input maxlength="100" class="form-control" id="commenttext" name="commenttext" placeholder="Insert comment...">
+  <button type="submit" class="btn btn-primary" id="commentbtn">Enter</button>
+</form>
+<br>
+
+
+<div id="commentsarea">
+  <center>
+    <br>
+    <img src="/static/img/loading.gif" width="50" height="50" alt="">
+    <br>
+    </center>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>  
+
+
+</div>
+
+
+<script>
+
+
+  function addcomment(){
+
+    document.getElementById("commentbtn").disabled = true;
+
+    var text = document.getElementById("commenttext").value;
+    var id = localStorage.getItem("sessionid");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://'+window.location.host+'/api/addcomment', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        'sessionid': id,
+        'comment': text
+    }));
+
+    xhr.onreadystatechange = function() { 
+
+      if (xhr.readyState == 4 && xhr.status == 200){
+
+        document.getElementById("commentbtn").disabled = false;
+
+        document.getElementById("commentsarea").innerHTML = '<a href="'+id+'" class="text-dark"><b>you</b></a>&nbsp;&nbsp;<a class="text-muted">now</a><p>'+text+'</p><hr>' + document.getElementById("commentsarea").innerHTML;
+
+      }
+    
+    }
+
+  }
+
+
+</script>
+
+
+{% endblock %}
