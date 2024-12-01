@@ -83,6 +83,7 @@
       if (xhr.readyState == 4 && xhr.status == 200){
 
         document.getElementById("commentbtn").disabled = false;
+        document.getElementById("commenttext").value = "";
 
         document.getElementById("commentsarea").innerHTML = '<a href="'+id+'" class="text-dark"><b>you</b></a>&nbsp;&nbsp;<a class="text-muted">now</a><p>'+text+'</p><hr>' + document.getElementById("commentsarea").innerHTML;
 
