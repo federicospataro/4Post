@@ -164,7 +164,7 @@ footer {
               var imgname = "like2.png";
             }
 
-            content = content + '<div class="card"><div class="card-body"><h5 class="card-title text-dark">'+r[i]['title']+'</h5><a href="/profile/'+r[i]['userid']+'" class="card-subtitle mb-2 text-muted">From '+r[i]['username']+'</a><p class="card-text text-dark">'+r[i]['phrase']+'</p><a class="card-subtitle mb-2 text-muted">'+r[i]['date']+' </a>&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" onclick="like(this)" id="icon,'+r[i]['id']+'"><img src="/static/img/'+imgname+'" height="50" width="50"></i><a class="text-danger"><i id="count,'+r[i]['id']+'">'+r[i]['likes']+'</i> Likes</a><a href="/post/'+r[i]['id']+'" class="card-link">&nbsp;&nbsp;&nbsp;&nbsp;Comment →</a></div></div><br>'
+            content = content + '<div class="card"><div class="card-body"><h5 class="card-title text-dark">'+r[i]['title']+'</h5><a href="/profile/'+r[i]['userid']+'" class="card-subtitle mb-2 text-muted">From '+r[i]['username']+'</a><p class="card-text text-dark">'+r[i]['phrase']+'</p><a class="card-subtitle mb-2 text-muted">'+r[i]['date']+' </a>&nbsp;&nbsp;<i style="cursor: pointer;" onclick="like(this)" id="icon,'+r[i]['id']+'"><img src="/static/img/'+imgname+'" height="25" width="25"></i>&nbsp;<a class="text-danger"><i id="count,'+r[i]['id']+'">'+r[i]['likes']+'</i> Likes</a><a href="/post/'+r[i]['id']+'" class="card-link">&nbsp;&nbsp;&nbsp;&nbsp;Comment →</a></div></div><br>'
           
           }
 
@@ -208,7 +208,7 @@ footer {
             var imgname = "like2.png";
           }
 
-          var content = '<center><font size="+2"><h1>'+r['title']+'</h1><a href="/profile/'+r['userid']+'" class="card-subtitle mb-2 text-muted">From '+r['username']+'</a><p>'+r['phrase']+'</p><a class="mb-2 text-muted">'+r['date']+' </a>&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" onclick="like(this)" id="icon,'+r['id']+'"><img src="/static/img/'+imgname+'" height="50" width="50"></i><a class="text-danger"><i id="count,'+r['id']+'">'+r['likes']+'</i> Likes</a></font></center>';
+          var content = '<center><font size="+2"><h1>'+r['title']+'</h1><a href="/profile/'+r['userid']+'" class="card-subtitle mb-2 text-muted">From '+r['username']+'</a><p>'+r['phrase']+'</p><a class="mb-2 text-muted">'+r['date']+' </a>&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" onclick="like(this)" id="icon,'+r['id']+'"><img src="/static/img/'+imgname+'" height="30" width="30"></i>&nbsp;<a class="text-danger"><i id="count,'+r['id']+'">'+r['likes']+'</i> Likes</a></font></center>';
 
           document.getElementById("singlepostarea").innerHTML = content;
 
