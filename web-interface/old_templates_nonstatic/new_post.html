@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}New Post{% endblock %}
+{% block content %}
+
+<div class="container">
+
+<br>
+ 
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item active">New Post</li>
+</ol>
+
+<br>
+
+
+<center><h3>New Post</h3>
+<h7>Write your post in the field below and press enter</h7></center>
+<br>
+<br>
+  <form action="javascript:addpost()">
+
+    
+    <div class="form-group">
+      <label for="titolo"><h5>Title</h5></label>
+      <input maxlength="20" class="form-control" id="title" name="title" placeholder="Enter the post title" required></input>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="contenuto"><h5>Phrase</h5></label>
+      <textarea maxlength="500" class="form-control" id="phrase" name="phrase" rows="4" placeholder="Insert phrase..." required></textarea>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Enter</button>
+    
+  </form>
+
+
+
+
+<br>
+<br>
+<br>  
+
+
+</div>
+
+
+<script>
+
+  function addpost(){
+
+    var id = localStorage.getItem("sessionid");
+    var title = document.getElementById("title").value;
+    var phrase = document.getElementById("phrase").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://'+window.location.host+'/api/addpost', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        'sessionid': id,
+        'title': title,
+        'phrase': phrase
+    }));
+
+    xhr.onreadystatechange = function() { 
+
+      if (xhr.readyState == 4 && xhr.status == 200){
+
+        window.location.href = "/";
+
+      }
+
+    }
+
+  }
+
+</script>
+
+
+{% endblock %}

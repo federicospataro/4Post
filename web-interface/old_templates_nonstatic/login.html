@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<br>
+
+<div class="container">
+ 
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item active">Login</li>
+</ol>
+
+<br>
+
+<center>
+
+
+    <div id="errordiv" class="alert alert-danger alert-dismissable" style="display: none;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <a id="errormsg"></a>
+    </div>
+
+
+  <div class="card" style="max-width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"><h3>Login</h3></h5>
+      Log in to comment, post me and make yourself visible within the community!
+      <br>
+      <br>
+      <form action="javascript:send()">
+        <input type="text" autocomplete="off" class="form-control" id="username" name="username"  placeholder="Username" required>
+        <br>
+        <input type="password" autocomplete="off" class="form-control" id="password" name="password" placeholder="Password" required>
+        <br>
+        <a class="text-muted">Not registered? <a href="/register">Create an account</a></a>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Enter</button>
+      </form>
+    </div>
+  </div>
+
+
+</center>
+
+<br><br><br>
+
+
+
+</div>
+
+
+<script>
+
+function send(){
+
+  var password = document.getElementById("password").value;
+  var username = document.getElementById("username").value;
+
+  var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://'+window.location.host+'/api/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        'username': username,
+        'password': password
+    }));
+
+    xhr.onreadystatechange = function() { 
+
+      if (xhr.readyState == 4 && xhr.status == 200){
+
+        var resp = xhr.responseText;
+
+        if(resp!="error"){
+
+          localStorage.setItem('sessionid',resp);
+          window.location.href = '/index';
+
+        }else{
+
+          display_error("Bad Credentials");
+
+        }
+
+      }
+
+    }
+
+}
+
+function display_error(t){
+
+  document.getElementById("errordiv").style.display = "block";
+  document.getElementById("errormsg").textContent = t;
+
+}
+
+</script>
+
+
+
+{% endblock %}

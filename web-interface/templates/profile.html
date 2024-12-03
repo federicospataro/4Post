@@ -1,7 +1,75 @@
-{% extends "base.html" %}
+<html lang="en-US">
+<head>
+    <title>Profile</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-{% block title %}Profile{% endblock %}
-{% block content %}
+
+  <!-- Bootstrap CSS -->
+    <!--<link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- CSS 2 -->
+    <!--<link href="static/css/css2.css" rel="stylesheet">-->
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="shortcut icon" type="image/png" href="/static/img/icon.ico"/>
+
+  <style>
+    table {border-collapse:collapse; table-layout:fixed;}
+    table td {word-wrap:break-word;}
+
+body {
+  padding-top: 56px;
+  background-image: url("/static/img/background.png");
+  background-color: #cccccc;
+}
+
+footer {
+    height: 150px;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+
+.navbar-toggler {
+  border-color: rgb(255, 255, 255) !important;
+} 
+    </style>
+ </head>
+<body>
+
+  <!-- Top Menu -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand text-light" style="cursor: pointer;"><img src="/static/img/icon.png" alt="" class="float-right" height="50" width="79"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item loggedlink">
+            <a href="javascript:logout()" class="nav-link text-white" href="/link">Logout</a>
+          </li>
+      
+          <li class="nav-item nologgedlink">
+            <a href="/login" type="button" class="btn btn-outline-light">Login</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<br>
 
 <div class="container">
 
@@ -130,4 +198,20 @@
 
 
 
-{% endblock %}
+<!-- Footer -->
+  <footer class="py-5 bg-primary">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; 4Post</p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JavaScript 
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="/static/init.js"></script>
+</body>
+</html>
