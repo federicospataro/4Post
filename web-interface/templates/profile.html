@@ -83,24 +83,7 @@ footer {
   <li class="breadcrumb-item active">Profile</li>
 </ol>
 
-<center>
-{% if messages %}
-  {% for msg in messages %}
-    <div class="alert alert-info alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      {{msg.message}}
-    </div>
-  {% endfor %}
-{% endif %}
-</center>
 
-{% if pre %}
-<br>
-<font size="+2">
-<a href="{{pre}}">&laquo; Indietro</a>
-</font>
-<br>
-{% endif %}
 <br>
 
 
