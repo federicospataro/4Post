@@ -128,13 +128,15 @@ footer {
 
     var text = document.getElementById("commenttext").value;
     var id = localStorage.getItem("sessionid");
+    var postid = window.location.pathname.split("/").slice(-1)[0];
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", 'http://'+window.location.host+'/api/addcomment', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         'sessionid': id,
-        'comment': text
+        'comment': text,
+        'postid': postid
     }));
 
     xhr.onreadystatechange = function() { 

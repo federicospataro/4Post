@@ -33,7 +33,7 @@ def index():
 @app.route("/newpost",methods=['GET'])
 def new_post():
 
-    return render_template('new_post.html',done=False)
+    return render_template('newpost.html',done=False)
 
 @app.route("/post/<id>",methods=['GET'])
 def post(id):

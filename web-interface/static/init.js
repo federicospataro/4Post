@@ -2,7 +2,7 @@ window.onload = function() {
       
       var id = localStorage.getItem("sessionid");
 
-      if(window.location.pathname!="/login"){
+      if((window.location.pathname!="/login")&&(window.location.pathname!="/register")){
 
         if(id==null){
           window.location.href = '/login';
@@ -79,7 +79,7 @@ window.onload = function() {
 
           if(content==""){
 
-            content = "<br><br><br><center><p>No posts available</p></center><br><br><br>"
+            content = "<br><br><br><center><p>You will see posts from users you follow here...</p></center><br><br><br>"
 
           }
 
@@ -126,7 +126,7 @@ window.onload = function() {
 
           for(var i = 0; i<Object.keys(c).length; i++){
 
-            content = content + '<a href="'+c[i]['userid']+'" class="text-dark"><b>'+c[i]['username']+'</b></a>&nbsp;&nbsp;<a class="text-muted">'+c[i]['date']+'</a><p>'+c[i]['comment']+'</p><hr>'
+            content = content + '<a href="/profile/'+c[i]['userid']+'" class="text-dark"><b>'+c[i]['username']+'</b></a>&nbsp;&nbsp;<a class="text-muted">'+c[i]['date']+'</a><p>'+c[i]['comment']+'</p><hr>'
 
           }
 
@@ -160,6 +160,8 @@ window.onload = function() {
           document.getElementById("nickname").textContent = p['username'];
           document.getElementById("description").textContent = p['description'];
           document.getElementById("role").textContent = p['role'];
+          document.getElementById("follower").textContent = p['follower'];
+          document.getElementById("following").textContent = p['following'];
 
           if(p['followed']){
             document.getElementById("notfollowed").style.display = "none";
